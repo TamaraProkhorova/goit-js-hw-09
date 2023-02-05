@@ -3,6 +3,8 @@ import "flatpickr/dist/flatpickr.min.css";
 
 const input = document.querySelector('#datetime-picker')
 const btnStart = document.querySelector('button');
+const timer = document.querySelector('.timer');
+const field = document.querySelector('.field');
 
 btnStart.toggleAttribute('disabled');
 const daysRef = document.querySelector('[data-days]'); 
@@ -27,32 +29,32 @@ const options = {
 flatpickr(input, options)
 console.log(input.value)
 
-// function convertMs(ms) {
-//     const second = 1000;
-//     const minute = second * 60;
-//     const hour = minute * 60;
-//     const day = hour * 24;
+function convertMs(ms) {
+    const second = 1000;
+    const minute = second * 60;
+    const hour = minute * 60;
+    const day = hour * 24;
   
-//     const days = Math.floor(ms / day);
-//     const hours = Math.floor((ms % day) / hour);
-//     const minutes = Math.floor(((ms % day) % hour) / minute);
-//     const seconds = Math.floor((((ms % day) % hour) % minute) / second);
+    const days = pad(Math.floor(ms / day));
+    const hours = pad(Math.floor((ms % day) / hour));
+    const minutes = pad(Math.floor(((ms % day) % hour) / minute));
+    const seconds = pad(Math.floor((((ms % day) % hour) % minute) / second));
   
-//     return { days, hours, minutes, seconds };
-//   }
+    return { days, hours, minutes, seconds };
+  }
 
-//   function countDownTime (){
-// const timeDifference = input.value - Date.now();
-// const formatDate = convertMs(timeDifference);
-// console.log(formatDate)
-//   }
+  function pad(value) {
+    return String(value).padStart(2 ,0)
+  }
 
-//   setInterval(countDownTime, 1000)
-//   btnStart.addEventListener('click', onClickBtnStart)
+  function countDownTime (){
+const timeDifference = new Date(input.value) - Date.now();
+const {days, hours, minutes, seconds} = convertMs(timeDifference);
+daysRef.textContent = `${days}`;
+hoursRef.textContent = `${hours}`;
+minutesRef.textContent = `${minutes}`;
+secondsRef.textContent = `${seconds}`;
+setInterval(countDownTime, 1000)
+  }
 
-// function onClickBtnStart() {
-//     const currentDate = Date.now();
-//     const timeDifference = selectedDates.getTime() - currentDate;
-//     console.log(timeDifference)
-//     formatDate = convertMs(timeDifference);
-// }
+  btnStart.addEventListener('click', countDownTime)
