@@ -1,4 +1,4 @@
-refs = {
+const refs = {
   form: document.querySelector('form'), 
   delay: document.getElementsByName('delay'), 
   step: document.getElementsByName('step'),
