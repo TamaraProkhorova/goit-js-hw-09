@@ -3,8 +3,6 @@ import "flatpickr/dist/flatpickr.min.css";
 
 const input = document.querySelector('#datetime-picker')
 const btnStart = document.querySelector('button');
-const timer = document.querySelector('.timer');
-const field = document.querySelector('.field');
 
 btnStart.toggleAttribute('disabled');
 const daysRef = document.querySelector('[data-days]'); 
@@ -27,7 +25,7 @@ const options = {
 }
 }
 flatpickr(input, options)
-console.log(input.value)
+// console.log(input.value)
 
 function convertMs(ms) {
     const second = 1000;
@@ -57,4 +55,5 @@ secondsRef.textContent = `${seconds}`;
 setInterval(countDownTime, 1000)
   }
 
-  btnStart.addEventListener('click', countDownTime)
+  btnStart.addEventListener('click', countDownTime);
+
