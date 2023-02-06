@@ -54,7 +54,7 @@ function convertMs(ms) {
         hoursRef.textContent = `${hours}`;
         minutesRef.textContent = `${minutes}`;
         secondsRef.textContent = `${seconds}`;
-        if (timeDifference <= 1000) {
+        if (timeDifference <= 0) {
           clearInterval(timer);
         }    
       }
