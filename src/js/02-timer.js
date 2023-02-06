@@ -45,14 +45,20 @@ function convertMs(ms) {
     return String(value).padStart(2 ,0)
   }
 
-  function countDownTime (){
-const timeDifference = new Date(input.value) - Date.now();
-const {days, hours, minutes, seconds} = convertMs(timeDifference);
-daysRef.textContent = `${days}`;
-hoursRef.textContent = `${hours}`;
-minutesRef.textContent = `${minutes}`;
-secondsRef.textContent = `${seconds}`;
-setInterval(countDownTime, 1000)
+  function countDownTime() {
+    let timer = setInterval(() => {
+      let timeDifference = new Date(input.value) - new Date();
+      if (timeDifference >= 0) {
+        const {days, hours, minutes, seconds} = convertMs(timeDifference);
+        daysRef.textContent = `${days}`;
+        hoursRef.textContent = `${hours}`;
+        minutesRef.textContent = `${minutes}`;
+        secondsRef.textContent = `${seconds}`;
+        if (timeDifference <= 1000) {
+          clearInterval(timer);
+        }    
+      }
+    }, 1000);
   }
 
   btnStart.addEventListener('click', countDownTime);
