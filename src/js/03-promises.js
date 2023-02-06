@@ -10,10 +10,12 @@ refs.btn.addEventListener("click", onSubmitBtn);
 
 function onSubmitBtn(event) {
   event.preventDefault();
-  let delay = 0;
-  for (let i=1; i <= refs.amount; i+=1) {
+  let delay = Number(refs.delay[0].value);
+  const step = Number(refs.step[0].value);
+  const amount = Number(refs.amount[0].value);
+  for (let i=1; i <= amount; i+=1) {
   let position = i;
-  delay = refs.delay + refs.step*(i-1);
+  delay = delay + step*(i-1);
 
   createPromise (position, delay)
       .then(({ position, delay }) => {
@@ -22,6 +24,7 @@ function onSubmitBtn(event) {
       .catch(({ position, delay }) => {
         console.log(`❌ Rejected promise ${position} in ${delay}ms`);
       });
+      refs.form.reset();
   }
 }
 
