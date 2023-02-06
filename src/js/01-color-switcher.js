@@ -10,6 +10,7 @@ function getRandomHexColor() {
   }
   
 let intervalId = null;
+btnStop.toggleAttribute('disabled');
 
 btnStart.addEventListener("click", startColorChange);
 btnStop.addEventListener("click", stopColorChange);
@@ -17,6 +18,8 @@ btnStop.addEventListener("click", stopColorChange);
 function startColorChange (){
     intervalId = setInterval(onChangeColorButtonClick, 1000);
     btnStart.toggleAttribute('disabled');
+    btnStop.removeAttribute('disabled');
+
 }
 
 function onChangeColorButtonClick () {
@@ -26,4 +29,5 @@ function onChangeColorButtonClick () {
 function stopColorChange (){
     clearInterval(intervalId);
     btnStart.removeAttribute('disabled');
+    btnStop.toggleAttribute('disabled');
 }
