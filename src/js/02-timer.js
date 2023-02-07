@@ -46,6 +46,7 @@ function convertMs(ms) {
   }
 
   function countDownTime() {
+    btnStart.toggleAttribute('disabled');
     let timer = setInterval(() => {
       let timeDifference = new Date(input.value) - new Date();
       if (timeDifference >= 0) {
